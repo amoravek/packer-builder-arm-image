@@ -59,12 +59,12 @@ func (s *stepQemuUserStatic) Run(ctx context.Context, state multistep.StateBag) 
 	config := state.Get("config").(*Config)
 
 	ui := state.Get("ui").(packer.Ui)
-	ui.Say("Installing qemu-user-static in the chroot")
 	qemuInHostPath := config.QemuBinary
 	_, qemuFilename := filepath.Split(qemuInHostPath)
+	ui.Say("Installing " + qemuFilename + " in the chroot")
 
 	// place qemu in the root dir in the chroot, as it is guaranteed to exist
-	s.Args.PathToQemuInChroot = "/" + qemuFilename
+	s.Args.PathToQemuInChroot = "/usr/bin/" + qemuFilename
 
 	s.qemuDestinationInChroot = filepath.Join(chrootDir, s.Args.PathToQemuInChroot)
 	state.Put(s.PathToQemuInChrootKey, s.Args.PathToQemuInChroot)

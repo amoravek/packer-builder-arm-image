@@ -32,6 +32,7 @@ var (
 		utils.RaspberryPi: {"/boot", "/"},
 		utils.BeagleBone:  {"/"},
 		utils.Kali:        {"/root", "/"},
+		utils.Rock64:      {"", "", "", "", "", "/boot", "/"},
 	}
 	knownArgs = map[utils.KnownImageType][]string{
 		utils.BeagleBone: {"-cpu", "cortex-a8"},

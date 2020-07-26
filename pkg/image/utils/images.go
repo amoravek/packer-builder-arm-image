@@ -12,6 +12,7 @@ const (
 	RaspberryPi KnownImageType = "raspberrypi"
 	BeagleBone  KnownImageType = "beaglebone"
 	Kali        KnownImageType = "kali"
+	Rock64      KnownImageType = "rock64"
 	Unknown     KnownImageType = ""
 )
 
@@ -19,6 +20,7 @@ func GuessImageType(url string) KnownImageType {
 	if strings.Contains(url, "raspbian") {
 		return RaspberryPi
 	}
+
 	if strings.Contains(url, "raspios") {
 		return RaspberryPi
 	}
@@ -31,8 +33,11 @@ func GuessImageType(url string) KnownImageType {
 		return Kali
 	}
 
-	return ""
+	if strings.Contains(url, "rock64") {
+		return Rock64
+	}
 
+	return ""
 }
 
 func GetImageFilesInCurrentDir() []string {
